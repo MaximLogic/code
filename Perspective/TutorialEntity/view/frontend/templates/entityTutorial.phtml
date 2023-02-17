@@ -1,0 +1,30 @@
+<?php
+/** @var \Perspective\TutorialEntity\Block\Template $block */
+?>
+<?php $product = $block->getProductById('1'); ?>
+<?php if (!is_null($product)) : ?>
+<h2><?= $product->getName(); ?></h2>
+<p><?= $product->getDescription() ?></p>
+<p><?= $product->getCreatedAt()?></p>
+<?php endif; ?>
+<hr>
+<?php foreach ($block->getProductsCreatedAfterDate("2023-01-14 00:00:00") as $Product): ?>
+<h2> <?= $Product->getName(); ?> </h2>
+<h3> <?= $Product->getPrice(); ?> </h3>
+<?php endforeach; ?>
+<hr>
+<?php
+//1 - Male, 2 - Female
+foreach ($block->getCustomersByGender(1) as $Customer): ?>
+
+<h2> <?= $Customer->getFirstname(); ?> <?= $Customer->getMiddlename(); ?> <?= $Customer->getLastname(); ?> </h2>
+<h3> <?= $Customer->getDob(); ?> </h3>
+<?php endforeach; ?>
+
+<hr>
+<?php
+foreach ($block->getCustomersByMonthOfBirth(12) as $Customer): ?>
+
+<h2> <?= $Customer->getFirstname(); ?> <?= $Customer->getMiddlename(); ?> <?= $Customer->getLastname(); ?> </h2>
+<h3> <?= $Customer->getDob(); ?> </h3>
+<?php endforeach; ?>
