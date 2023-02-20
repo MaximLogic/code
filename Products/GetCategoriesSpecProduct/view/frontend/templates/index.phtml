@@ -1,0 +1,8 @@
+<?php 
+    $product = $block->getProductById(1);
+    $categoryIds = $product->getCategoryIds();
+    $categories = $block->getCategoryCollection()->addAttributeToFilter('entity_id', $categoryIds);
+    foreach ($categories as $category) {
+        echo "<p>" . $category->getName() . '</p>';
+    }
+?>

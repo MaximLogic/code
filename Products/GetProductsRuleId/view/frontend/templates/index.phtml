@@ -1,0 +1,8 @@
+<?php
+    $productCollection = $block->getProductsByCatalogRuleId(2);
+    foreach($productCollection as $product)
+    {
+        echo "<h2>" . $product->getName() . "</h2>";
+        echo "<h3>" . $product->getPrice() . "</h3>";
+    }
+?>

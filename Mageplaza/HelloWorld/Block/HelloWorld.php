@@ -12,15 +12,14 @@ class HelloWorld extends \Magento\Framework\View\Element\Template
         array $data = []
     )
     {
-        $this->_productCollectionFactory =
-        $productCollectionFactory;
+        $this->_productCollectionFactory = $productCollectionFactory;
         parent::__construct($context, $data);
     }
     public function getProductCollection()
     {
         $collection = $this->_productCollectionFactory->create();
-        $collection->addAttributeToSelect('*');
-        $collection->setPageSize(3); // fetching only 3 products
+        $collection->addAttributeToSelect(['name','sku']);
+        $collection->setPageSize(3);
         return $collection;
     }
 }
