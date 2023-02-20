@@ -1,10 +1,10 @@
 <?php
-    $productCollection = $block->getProductsByCatalogRuleId(2);
+    $ids = [1,2,3];
+    $productCollection = $block->getProductCollectionByCategories($ids);
     foreach($productCollection as $product)
     {
         echo "<h2>" . $product->getName() . "</h2>";
         echo "<p>" . $product->getDescription() . "</p>";
         echo "<h3>" . $product->getPrice() . "</h3>";
-        
     }
 ?>
