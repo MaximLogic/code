@@ -1,0 +1,6 @@
+<?php
+$productCollection = $block->getProductCollectionFilterVisibility();
+foreach ($productCollection as $product) {
+    echo $product->getName() . ' - ' . $product->getProductUrl() . '<br />';
+}
+?>
