@@ -1,0 +1,9 @@
+<?php
+    $productCollection = $block->getProductsFiltered();
+    foreach($productCollection as $product)
+    {
+        echo "<h2>" . $product->getName() . "</h2>";
+        echo "<h3>Price: " . round($product->getPrice(), 5) . "</h3>";
+        echo "<h3>SKU: " . $product->getSku() . "</h3>";
+    }
+?>
