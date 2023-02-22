@@ -1,0 +1,64 @@
+<?php
+    echo "<h1>Task 1.1</h1>";
+    $productStockInfo = $block->getProductStockInfo(1);
+    echo "<h2>" . $productStockInfo[0] . "</h2>";
+    echo "<h3>Quantity: " . $productStockInfo[1] . "</h3>";
+    echo "<h3>Is in stock: " . $productStockInfo[2] . "</h3>";
+
+    echo "<hr>";
+
+    echo "<h1>Task 1.2</h1>";
+    $productImageInfo = $block->getProductImageInfo(2, "product_small_image");
+    echo "<h2>" . $productImageInfo[0] . "</h2>";
+    echo "<h3>Image Height: " . $productImageInfo[1] . "</h3>";
+    echo "<h3>Image Width: " . $productImageInfo[2] . "</h3>";
+    echo "<h3>Image Url: " . $productImageInfo[3] . "</h3>";
+
+    echo "<hr>";
+
+    echo "<h1>Task 1.3</h1>";
+    $customerCollection = $block->getCustomerCollection();
+    foreach($customerCollection as $customer)
+    {
+        echo "<h2>" . $customer->getName() . "</h2>";
+    }
+
+    echo "<hr>";
+
+    echo "<h1>Task 1.4</h1>";
+    $orderCollection = $block->getOrderCollectionByCustomerId(1);
+    foreach ($orderCollection as $order) {
+        echo "<h3>Order ID: " . $order->getId() . " Order status: " . $order->getStatus() . "</h3>";
+    }
+
+    echo "<hr>";
+
+    echo "<h1>Task 1.5</h1>";
+    $customerGroupsCollection = $block->getCustomerGroupsCollection();
+    foreach($customerGroupsCollection as $customerGroup)
+    {
+        echo "<h3>Group name: " . $customerGroup->getCode() . "</h3>";
+    }
+
+    echo "<hr>";
+
+    echo "<h1>Task 1.6</h1>";
+    $paymentMethodList = $block->getPaymentMethodsList(0);
+    foreach($paymentMethodList as $paymentMethod)
+    {
+        echo "<h3>Payment method: " . $paymentMethod->getTitle() . "</h3>";
+    }
+
+    echo "<hr>";
+
+    echo "<h1>Task 1.7</h1>";
+    $shippingMethodList = $block->getShippingMethodsList();
+    foreach($shippingMethodList as $shippingMethod)
+    {
+        if($shippingMethod["label"] != "")
+        {
+            echo "<h3>Shipping method: " . $shippingMethod["label"] . "</h3>";
+        }
+    }
+
+?>
