@@ -1,0 +1,45 @@
+<?php
+    echo "<h1>Task 3.1</h1>";
+    echo "<h2>Bundle Products:</h2>";
+
+    $productCollection = $block->getBundleProducts();
+    displayProducts($productCollection, $block);
+
+    echo "<h2>Bundle Children Products:</h2>";
+    displayChildrenProducts($productCollection, $block);
+    
+    echo "<hr>";
+
+    echo "<h1>Task 3.2</h1>";
+    echo "<h2>Grouped Products:</h2>";
+
+    $productCollection = $block->getGroupedProducts();
+    displayProducts($productCollection, $block);
+
+    echo "<h2>Grouped Children Products:</h2>";
+    displayChildrenProducts($productCollection, $block);
+
+    function displayProducts($productCollection, $block)
+    {
+        foreach($productCollection as $product)
+        {
+            echo "<h3>Name: " . $product->getName() . "</h3>";
+        }
+    }
+    
+    function displayChildrenProducts($productCollection, $block)
+    {
+        foreach($productCollection as $product)
+        {
+            $childrenProductsIds = $block->getChildrenProductsIds($product);
+            if(!is_null($childrenProductsIds))
+            {
+                foreach($childrenProductsIds as $id)
+                {
+                    $childrenProduct = $block->getProductById($id);
+                    echo "<h3>Name: " . $childrenProduct->getName() . "</h3>";
+                }
+            }
+        }
+    }
+?>

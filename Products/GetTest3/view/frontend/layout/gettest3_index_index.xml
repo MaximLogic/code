@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Test Tasks 3</title>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Products\GetTest3\Block\Index" name="getTest3" template="Products_GetTest3::index.phtml" />
+        </referenceContainer>
+    </body>
+</page>
