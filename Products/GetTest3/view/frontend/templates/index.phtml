@@ -16,7 +16,7 @@
     $productCollection = $block->getGroupedProducts();
     displayProducts($productCollection, $block);
 
-    echo "<h2>Grouped Children Products:</h2>";
+    echo "<h2>Grouped Children Products</h2>";
     displayChildrenProducts($productCollection, $block);
 
     function displayProducts($productCollection, $block)
@@ -31,8 +31,8 @@
     {
         foreach($productCollection as $product)
         {
-            $childrenProductsIds = $block->getChildrenProductsIds($product);
-            if(!is_null($childrenProductsIds))
+            $childrenProductsIds = $block->getChildrenConfProduct($product);
+            if($childrenProductsIds)
             {
                 foreach($childrenProductsIds as $id)
                 {

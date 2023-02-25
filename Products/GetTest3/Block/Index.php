@@ -14,6 +14,16 @@ class Index extends \Magento\Framework\View\Element\Template
     private $_productCollectionFactory;
 
     /**
+     * @var \Magento\Catalog\Model\ProductFactory
+     */
+    private $_productFactory;
+
+    /**
+     * @var \Magento\Catalog\Model\ResourceModel\Product
+     */
+    private $_productResource;
+
+    /**
      * @param \Magento\Framework\View\Element\Template\Context $context
      * @param array $data
      */
@@ -21,11 +31,15 @@ class Index extends \Magento\Framework\View\Element\Template
         \Magento\Framework\View\Element\Template\Context $context,
         \Magento\Catalog\Model\ProductRepository $productRepository,
         \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,
+        \Magento\Catalog\Model\ProductFactory $productFactory,
+        \Magento\Catalog\Model\ResourceModel\Product $productResource,
         array $data = []
     ) 
     {
         $this->_productRepository = $productRepository;
         $this->_productCollectionFactory = $productCollectionFactory;
+        $this->_productFactory = $productFactory;
+        $this->_productResource = $productResource;
         parent::__construct($context, $data);
     }
 
@@ -35,7 +49,9 @@ class Index extends \Magento\Framework\View\Element\Template
         {
             return null;
         }
-        $product = $this->_productRepository->getById($productId);
+        
+        $product = $this->_productFactory->create();
+        $this->_productResource->load($product, $productId);
         return $product;
     }
 
@@ -57,9 +73,25 @@ class Index extends \Magento\Framework\View\Element\Template
         return $productCollection;
     }
 
-    public function getChildrenProductsIds($productCollection)
+    public function getChildrenProductsIds($product)
     {
-        $childrenProductsIds = $productCollection->getChildrenIds();
+        $productId = $product->getId();
+        $productModel = $this->getProductById($productId);
+        $childrenProductsIds = $productModel->getTypeInstance()->getChildrenIds($productId);
         return $childrenProductsIds;
+    }
+
+    public function getChildrenConfProduct($product)
+    {
+        $productId = $product->getId();
+        $parentprod = $this->getProductById($productId);
+        // $children = $parentprod->getTypeInstance()->getUsedProducts($parentprod);
+        $children = $parentprod->getTypeInstance()->getChildrenIds
+        ($productId);
+        if($children) 
+        {
+            return $children;
+        }
+        return false;
     }
 }
