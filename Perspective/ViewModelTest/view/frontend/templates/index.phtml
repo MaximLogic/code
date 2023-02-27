@@ -1,0 +1,6 @@
+<?php
+    $viewModel = $block->getData("view_model");
+    $productInfo = $viewModel->getProductStockInfo(1);
+    echo "<h2>Name: " . $productInfo[0] . "</h2>";
+    echo "<h3>Stock: " . $productInfo[1] . "</h3>";
+?>
