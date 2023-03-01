@@ -1,0 +1,58 @@
+<?php
+    $viewModel = $block->getViewModel();
+
+    echo "<h1>Get image info</h1>";
+    $productImageInfo = $viewModel->getProductImageInfo(2, "product_small_image");
+    $productImageUrl = $productImageInfo[3];
+    echo "<h2>" . $productImageInfo[0] . "</h2>";
+    echo "<h3>Image Height: " . $productImageInfo[1] . "</h3>";
+    echo "<h3>Image Width: " . $productImageInfo[2] . "</h3>";
+    echo "<img src='$productImageUrl' />";
+
+    echo "<hr>";
+
+    echo "<h1>Get customer collection</h1>";
+    $customerCollection = $viewModel->getCustomerCollection();
+    foreach($customerCollection as $customer)
+    {
+        echo "<h2>" . $customer->getName() . "</h2>";
+    }
+
+    echo "<hr>";
+
+    echo "<h1>Get order collection by customer ID</h1>";
+    $orderCollection = $viewModel->getOrderCollectionByCustomerId(1);
+    foreach ($orderCollection as $order) {
+        echo "<h3>Order ID: " . $order->getId() . " Order status: " . $order->getStatus() . "</h3>";
+    }
+
+    echo "<hr>";
+
+    echo "<h1>Get customer groups collection</h1>";
+    $customerGroupsCollection = $viewModel->getCustomerGroupsCollection();
+    foreach($customerGroupsCollection as $customerGroup)
+    {
+        echo "<h3>Group name: " . $customerGroup->getCode() . "</h3>";
+    }
+
+    echo "<hr>";
+
+    echo "<h1>Get payment methods list</h1>";
+    $paymentMethodList = $viewModel->getPaymentMethodsList(0);
+    foreach($paymentMethodList as $paymentMethod)
+    {
+        echo "<h3>Payment method: " . $paymentMethod->getTitle() . "</h3>";
+    }
+
+    echo "<hr>";
+
+    echo "<h1>Get shipping methods list</h1>";
+    $shippingMethodList = $viewModel->getShippingMethodsList();
+    foreach($shippingMethodList as $shippingMethod)
+    {
+        if($shippingMethod["label"] != "")
+        {
+            echo "<h3>Shipping method: " . $shippingMethod["label"] . "</h3>";
+        }
+    }
+?>

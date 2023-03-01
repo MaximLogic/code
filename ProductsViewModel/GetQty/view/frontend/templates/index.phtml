@@ -1,0 +1,11 @@
+<?php
+    $viewModel = $block->getViewModel();
+    if ($currentProduct = $viewModel->getCurrentProduct()) 
+    {
+        $productStockInfo = $viewModel->getProductStockInfo();
+        echo $currentProduct->getId() . '<br />';
+        echo $productStockInfo[0] . '<br />';
+        echo "Quantity: " . $productStockInfo[1] . '<br />';
+        echo "Is in stock: " . $productStockInfo[2] . '<br />';
+    }
+?>
