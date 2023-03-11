@@ -1,0 +1,10 @@
+<?php
+    $viewModel = $block->getData("view_model");
+
+    $collection = $viewModel->getPostCollection();
+    foreach($collection as $item){
+        echo "<pre>";
+        print_r($item->getData());
+        echo "</pre>";
+    }
+?>
