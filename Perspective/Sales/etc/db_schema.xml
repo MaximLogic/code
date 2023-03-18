@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="perspective_sales" resource="default" engine="innodb" comment="Sales table">
+        <column xsi:type="int" name="sale_id" padding="11" unsigned="true" nullable="false" identity="true" comment=""/>
+        <column xsi:type="varchar" name="product" nullable="false" length="32" comment=""/>
+        <column xsi:type="int" name="count" padding="11" unsigned="true" nullable="false" comment=""/>
+        <column xsi:type="date" name="date" nullable="false" comment=""/>
+        <column xsi:type="float" name="discount" unsigned="true" nullable="false" comment=""/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="sale_id"/>
+        </constraint>
+    </table>
+</schema>

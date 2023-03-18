@@ -1,0 +1,14 @@
+{
+    "perspective_sales": {
+        "column": {
+            "sale_id": true,
+            "product": true,
+            "count": true,
+            "date": true,
+            "discount": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}
