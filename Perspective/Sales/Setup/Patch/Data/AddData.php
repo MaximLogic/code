@@ -44,15 +44,11 @@ class AddData implements DataPatchInterface, PatchVersionInterface
 
         foreach($sales as $item)
         {
-            $product = $item[0];
-            $count = $item[1];
-            $date = $item[2];
-            $discount = $item[3];
             $sale=$this->_salesFactory->create();
-            $sale->setProduct($product)
-                 ->setCount($count)
-                 ->setDate($date)
-                 ->setDiscount($discount);
+            $sale->setProduct($item[0])
+                 ->setCount($item[1])
+                 ->setDate($item[2])
+                 ->setDiscount($item[3]);
             $this->_salesResource->save($sale);
         }
         $this->_moduleDataSetup->endSetup();
