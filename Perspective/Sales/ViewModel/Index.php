@@ -10,11 +10,18 @@ class Index implements ArgumentInterface
      */
     private $_salesFactory;
 
+    /**
+     * @var \Perspective\Sales\Model\ResourceModel\Sales\CollectionFactory
+     */
+    private $_salesCollectionFactory;
+
     public function __construct(
-        \Perspective\Sales\Model\SalesFactory $_salesFactory
+        \Perspective\Sales\Model\SalesFactory $_salesFactory,
+        \Perspective\Sales\Model\ResourceModel\Sales\CollectionFactory $_salesCollectionFactory
     )
     {
         $this->_salesFactory = $_salesFactory;
+        $this->_salesCollectionFactory = $_salesCollectionFactory;
     }
 
     public function updateData(){
@@ -30,5 +37,39 @@ class Index implements ArgumentInterface
 
             $sales->save();
         }
+    }
+
+    public function getPriceByName($productName)
+    {
+        $collection = [];
+
+        $salesCollection = $this->_salesCollectionFactory
+        ->create()
+        ->addFieldToSelect("*")
+        ->addFieldToFilter("product", ["eq" => $productName]);
+
+        foreach($salesCollection as $sale)
+        {
+            $curdate = date("Y-m-d");
+            
+            if($sale["date"] == $curdate)
+            {
+                $collection[] = [
+                    "name" => $sale["product"],
+                    "price" => $sale["price"] * $sale["count"] * (1 - $sale["bonus"]),
+                    "date" => $sale["date"]
+                ];
+            }
+            else
+            {
+                $collection[] = [
+                    "name" => $sale["product"],
+                    "price" => $sale["price"] * $sale["count"],
+                    "date" => $sale["date"]
+                ];
+            }
+        }
+
+        return $collection;
     }
 }

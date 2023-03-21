@@ -5,7 +5,7 @@
         <column xsi:type="varchar" name="product" nullable="false" length="32" comment=""/>
         <column xsi:type="int" name="count" padding="11" unsigned="true" nullable="false" comment=""/>
         <column xsi:type="date" name="date" nullable="false" comment=""/>
-        <column xsi:type="float" name="discount" unsigned="true" nullable="false" comment=""/>
+        <column xsi:type="float" name="bonus" unsigned="true" nullable="false" comment=""/>
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="sale_id"/>
         </constraint>
