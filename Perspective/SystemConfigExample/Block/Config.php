@@ -1,6 +1,8 @@
 <?php
 namespace Perspective\SystemConfigExample\Block;
 
+use Magento\TestFramework\Utility\ChildrenClassesSearch\F;
+
 class Config extends \Magento\Framework\View\Element\Template
 {
     /**
