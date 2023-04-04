@@ -5,6 +5,6 @@
         sortOrder="10" resource="Perspective_CurrencyConfig::currency"/>
         <add id="Perspective_CurrencyConfig::config" title="Configuration" module="Perspective_CurrencyConfig"
         sortOrder="10" parent="Perspective_CurrencyConfig::currency" resource="Perspective_CurrencyConfig::config"
-        action="adminhtml/system_config/edit/section/currency"/>
+        action="adminhtml/system_config/edit/section/currencyconf"/>
     </menu>
 </config>

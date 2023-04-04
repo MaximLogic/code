@@ -4,7 +4,7 @@
         <tab id="perspective" translate="label" sortOrder="10">
             <label>Perspective</label>
         </tab>
-        <section id="currency" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+        <section id="currencyconf" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Currency</label>
             <tab>perspective</tab>
             <resource>Perspective_CurrencyConfig::config</resource>
@@ -14,25 +14,49 @@
                     <label>Module Enable</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="uahenable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="uah_enable" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>UAH</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
                         <field id="enable">1</field>
                     </depends>
                 </field>
-                <field id="rubenable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="uah_course" type="text" translate="label" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>UAH Course</label>
+                    <validate>required-entry validate-number</validate>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="uah_enable">1</field>
+                    </depends>
+                </field>
+                <field id="rub_enable" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>RUB</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
                         <field id="enable">1</field>
                     </depends>
                 </field>
-                <field id="euroenable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="rub_course" type="text" translate="label" sortOrder="5" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>RUB Course</label>
+                    <validate>required-entry validate-number</validate>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="rub_enable">1</field>
+                    </depends>
+                </field>
+                <field id="euro_enable" translate="label" type="select" sortOrder="6" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>EURO</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
                         <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="euro_course" type="text" translate="label" sortOrder="7" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>EURO Course</label>
+                    <validate>required-entry validate-number</validate>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="euro_enable">1</field>
                     </depends>
                 </field>
             </group>

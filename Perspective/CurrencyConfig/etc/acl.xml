@@ -9,7 +9,7 @@
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
-                            <resource id="Perspective_CurrencyConfig::config" title="Currency Configuration"/>
+                            <resource id="Perspective_CurrencyConfig::configuration" title="Currency Configuration"/>
                         </resource>
                     </resource>
                 </resource>
