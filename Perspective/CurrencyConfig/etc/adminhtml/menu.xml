@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Perspective_CurrencyConfig::currency" title="Currency" module="Perspective_CurrencyConfig" 
+        sortOrder="10" resource="Perspective_CurrencyConfig::currency"/>
+        <add id="Perspective_CurrencyConfig::config" title="Configuration" module="Perspective_CurrencyConfig"
+        sortOrder="10" parent="Perspective_CurrencyConfig::currency" resource="Perspective_CurrencyConfig::config"
+        action="adminhtml/system_config/edit/section/currency"/>
+    </menu>
+</config>

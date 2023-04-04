@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Perspective_HelloWorld::helloworld" title="Hello World" 
+        module="Perspective_HelloWorld" sortOrder="51" resource="Perspective_HelloWorld::helloworld"/>
+        <add id="Perspective_HelloWorld::post" title="Manage Posts" 
+        module="Perspective_HelloWorld" sortOrder="10" action="perspective_helloworld/post" resource="Perspective_HelloWorld::post"
+        parent="Perspective_HelloWorld::helloworld"/>
+        <add id="Perspective_HelloWorld::hello_configuration" title="Configuration" 
+        module="Perspective_HelloWorld" sortOrder="99" parent="Perspective_HelloWorld::helloworld" 
+        action="adminhtml/system_config/edit/section/helloworld" 
+        resource="Perspective_HelloWorld::helloworld_configuration"/>
+    </menu>
+</config>
