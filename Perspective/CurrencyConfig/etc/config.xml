@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <currencyconf>
+            <general>
+                <enable>1</enable>
+                <uah_enable>0</uah_enable>
+                <rub_enable>0</rub_enable>
+                <euro_enable>0</euro_enable>
+            </general>
+        </currencyconf>
+    </default>
+</config>

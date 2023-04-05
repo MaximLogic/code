@@ -1,0 +1,17 @@
+<?php
+    if ($currentProduct = $block->getCurrentProduct())
+    {
+        if($uahCourse = $block->getUahCourse())
+        {
+            echo "UAH: " . $currentProduct->getFinalPrice() * $uahCourse . "<br>";
+        }
+        if($rubCourse = $block->getRubCourse())
+        {
+            echo "RUB: " . $currentProduct->getFinalPrice() * $rubCourse . "<br>";
+        }
+        if($euroCourse = $block->getEuroCourse())
+        {
+            echo "Euro: " . $currentProduct->getFinalPrice() * $euroCourse . "<br>";
+        }
+    }
+?>
