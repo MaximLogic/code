@@ -8,7 +8,7 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 class Data extends AbstractHelper
 {
     public function __construct(
-        Context $context,
+        Context $context
     )
     {
         parent::__construct($context);
