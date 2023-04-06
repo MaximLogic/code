@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Perspective_QuantityConfig::quantity" title="Quantity" module="Perspective_QuantityConfig" 
+        sortOrder="53" resource="Perspective_QuantityConfig::quantity"/>
+        <add id="Perspective_QuantityConfig::config" title="Configuration" module="Perspective_QuantityConfig"
+        sortOrder="1" parent="Perspective_QuantityConfig::quantity" resource="Perspective_QuantityConfig::config"
+        action="adminhtml/system_config/edit/section/quantityconf"/>
+    </menu>
+</config>

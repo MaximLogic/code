@@ -1,0 +1,18 @@
+<?php
+    if($block->isEnabled())
+    {
+        $currentProduct = $block->getCurrentProduct();
+        $currentProductQuantity = $block->getStockQty($currentProduct->getId(), 1);
+        $minQuantity = $block->getX();
+
+        if ($currentProductQuantity <= $minQuantity)
+        {
+            echo "Заканчивается<br>";
+        }
+        else
+        {
+            echo "В наличии<br>";
+        }
+        echo "Осталось " . $currentProductQuantity . " единиц<br>";
+    }
+?>
