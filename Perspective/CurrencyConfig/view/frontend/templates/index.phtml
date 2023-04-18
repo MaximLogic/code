@@ -1,6 +1,7 @@
 <?php
     if ($currentProduct = $block->getCurrentProduct())
     {
+        /* 
         if($uahCourse = $block->getUahCourse())
         {
             echo "UAH: " . $currentProduct->getFinalPrice() * $uahCourse . "<br>";
@@ -12,6 +13,13 @@
         if($euroCourse = $block->getEuroCourse())
         {
             echo "Euro: " . $currentProduct->getFinalPrice() * $euroCourse . "<br>";
+        }
+ */     
+        $availableCurrencyCodes = $block->getAvailableCurrencyCodes(true);
+
+        foreach($availableCurrencyCodes as $code)
+        {
+            echo $code . ": " . $block->convertPriceFromCurrentToAnotherCurrency($currentProduct->getFinalPrice(), $code) . "<br>";
         }
     }
 ?>

@@ -14,6 +14,16 @@ class Config extends \Magento\Framework\View\Element\Template
     private $registry;
 
     /**
+     * @var \Magento\Store\Model\StoreManagerInterface
+     */
+    private $storeManager;
+
+    /**
+     * @var \Magento\Directory\Model\CurrencyFactory
+     */
+    private $currencyFactory;
+
+    /**
      * @param \Magento\Framework\View\Element\Template\Context $context
      * @param array $data
      */
@@ -21,10 +31,14 @@ class Config extends \Magento\Framework\View\Element\Template
         \Magento\Framework\View\Element\Template\Context $context,
         \Perspective\CurrencyConfig\Helper\Data $helperData,
         \Magento\Framework\Registry $registry,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
+        \Magento\Directory\Model\CurrencyFactory $currencyFactory,
         array $data = []
     ) {
         $this->helperData = $helperData;
         $this->registry = $registry;
+        $this->storeManager = $storeManager;
+        $this->currencyFactory = $currencyFactory;
         parent::__construct($context, $data);
     }
     
@@ -51,5 +65,22 @@ class Config extends \Magento\Framework\View\Element\Template
     public function getEuroCourse()
     {
         return $this->helperData->getEuroCourse();
+    }
+    
+    public function getAvailableCurrencyCodes($skipBaseNotAllowed = false)
+    {
+        return $this->_storeManager->getStore()->getAvailableCurrencyCodes($skipBaseNotAllowed);
+    }
+    
+    public function convertPriceFromCurrentToAnotherCurrency($price, $currencyCodeTo)
+    {
+        $curentCurrencyCode =  $this->storeManager->getStore()->getCurrentCurrency()->getCode();
+        $rate = $this->currencyFactory->create()
+                        ->load($curentCurrencyCode)
+                        ->getAnyRate($currencyCodeTo);
+
+        $convertedPrice = $price * $rate;
+
+        return $convertedPrice;
     }
 }
