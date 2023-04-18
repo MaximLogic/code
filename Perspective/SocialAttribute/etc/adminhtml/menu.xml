@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Perspective_SocialAttribute::social" title="Social" module="Perspective_SocialAttribute" 
+        sortOrder="53" resource="Perspective_SocialAttribute::social"/>
+        <add id="Perspective_SocialAttribute::config" title="Configuration" module="Perspective_SocialAttribute"
+        sortOrder="1" parent="Perspective_SocialAttribute::social" resource="Perspective_SocialAttribute::config"
+        action="adminhtml/system_config/edit/section/socialconf"/>
+    </menu>
+</config>
