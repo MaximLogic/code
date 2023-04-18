@@ -1,0 +1,45 @@
+<?php
+    $viewModel = $block->getData("view_model");
+
+    $currentProduct = $viewModel->getCurrentProduct();
+    $productWeight = $currentProduct->getWeight();
+    $productFreightType = $currentProduct->getAirFreightOnly();
+    $maxWeight = 0;
+    $margin = 0;
+    $type = "";
+    if($viewModel->isAirFreightEnabled() && $productFreightType != "none")
+    {
+        if($productFreightType == "baloon")
+        {
+            $maxWeight = $viewModel->getBaloonMax();
+            $margin = $viewModel->getBaloonMargin();
+            $type = "Balloon";
+        }
+    
+        else if($productFreightType == "charter_plane")
+        {
+            $maxWeight = $viewModel->getCharterPlaneMax();
+            $margin = $viewModel->getCharterPlaneMargin();
+            $type = "Charter Plane";
+        }
+    
+        else if($productFreightType == "high_speed_plane")
+        {
+            $maxWeight = $viewModel->getHighspeedPlaneMax();
+            $margin = $viewModel->getHighspeedPlaneMargin();
+            $type = "High Speed Plane";
+        }
+    
+        else if($productFreightType == "spaceship")
+        {
+            $maxWeight = $viewModel->getSpaceshipMax();
+            $margin = $viewModel->getSpaceshipMargin();
+            $type = "Spaceship";
+        }
+    
+        if($productWeight > $maxWeight)
+        {
+            echo "За перевозку способом $type будет начислена дополнительная плата <b>" . ($productWeight - $maxWeight) * $margin . "$</b><br>";
+        }
+    }
+?>

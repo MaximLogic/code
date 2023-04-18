@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Perspective_FreightAttribute::freight" title="Freight" module="Perspective_FreightAttribute" 
+        sortOrder="54" resource="Perspective_FreightAttribute::freight"/>
+        <add id="Perspective_FreightAttribute::config" title="Configuration" module="Perspective_FreightAttribute"
+        sortOrder="1" parent="Perspective_FreightAttribute::freight" resource="Perspective_FreightAttribute::config"
+        action="adminhtml/system_config/edit/section/freightconf"/>
+    </menu>
+</config>
