@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="catalog_controller_product_view">
+        <observer name="getPriceObserver" instance="Perspective\IncreaseProductPrice\Observer\GetPriceObserver" />
+    </event>
+    <event name="checkout_cart_product_add_before">
+        <observer name="getCartPriceObserver" instance="Perspective\IncreaseProductPrice\Observer\GetPriceObserver" />
+    </event>
+</config>
