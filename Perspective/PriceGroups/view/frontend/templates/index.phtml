@@ -1,0 +1,35 @@
+<?php
+    $viewModel = $block->getData('view_model');
+    $product = $block->getProduct();
+    if($viewModel->isModuleEnabled())
+    {
+        if($viewModel->isBasePriceEnabled())
+        {
+            echo "Base price: " . $product->getPrice() . '<br>';
+        }
+
+        if($viewModel->isFinalPriceEnabled())
+        {
+            echo "Final price: " . $product->getFinalPrice() . '<br>';
+        }
+
+        if($viewModel->isSpecialPriceEnabled())
+        {
+            echo "Special price: " . $product->getSpecialPrice() . '<br>';
+        }
+
+        if($viewModel->isTierPriceEnabled())
+        {
+            echo "Tier price: ";
+            echo is_null($product->getTierPrice()) ? '-' : var_dump($product->getTierPrice());
+            echo '<br>';
+        }
+
+        if($viewModel->isCatalogRulePriceEnabled())
+        {
+            echo "Catalog rule price: " . $product->getFinalPrice() . '<br>';
+        }
+
+    }
+?>
+
