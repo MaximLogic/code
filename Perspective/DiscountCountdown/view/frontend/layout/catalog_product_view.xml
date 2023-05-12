@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="product.info.main">
+            <block 
+                class="Magento\Catalog\Block\Product\View" 
+                name="Perspective_DiscountCountdown" 
+                template="Perspective_DiscountCountdown::index.phtml"
+                after="product.info.price">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Perspective\DiscountCountdown\ViewModel\Countdown</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

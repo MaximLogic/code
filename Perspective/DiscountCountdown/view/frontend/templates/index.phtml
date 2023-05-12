@@ -1,0 +1,37 @@
+<?php
+
+use function PHPUnit\Framework\isInfinite;
+
+    $viewModel = $block->getData('view_model');
+    $product = $block->getProduct();
+
+    $currentDateTime = $viewModel->getCurrentDateTime();
+    $currentTimeStamp = $viewModel->getCurrentTimeStamp();
+    $rules = $viewModel->getRules($currentDateTime, $product->getId());
+
+    $minRuleToTime = INF;
+    $specialToDate = $product->getSpecialToDate();
+
+    foreach($rules as $rule)
+    {
+        $minRuleToTime = min($rule['to_time'], $minRuleToTime);
+    }
+
+    if(isset($specialToDate) && strtotime($specialToDate) > $currentTimeStamp || isset($rules))
+    {
+        $specialToTimeStamp = !isset($specialToDate) ? INF : strtotime($specialToDate);
+        
+        $time = min($specialToTimeStamp, $minRuleToTime);
+
+        $timeUntilEnd = $time - $currentTimeStamp;
+
+        echo '<b>Special price offer end in: </b>';
+        echo (int)($timeUntilEnd / 86400) . ' days ';
+        $timeUntilEnd %= 86400;
+        echo (int)($timeUntilEnd / 3600) . ' hours ';
+        $timeUntilEnd %= 3600;
+        echo (int)($timeUntilEnd / 60) . ' minutes ';
+        $timeUntilEnd %= 60;
+        echo (int)($timeUntilEnd) . ' seconds ';
+    }
+?>
