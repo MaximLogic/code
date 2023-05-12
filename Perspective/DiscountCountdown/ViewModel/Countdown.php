@@ -38,4 +38,31 @@ class Countdown implements ArgumentInterface
     {
         return $this->ruleResource->getRulesFromProduct($date, $websiteId, $customerGroupId, $productId);
     }
+
+    public function getTimeUntilEnd($product)
+    {
+        $currentDateTime = $this->getCurrentDateTime();
+        $currentTimeStamp = $this->getCurrentTimeStamp();
+        $rules = $this->getRules($currentDateTime, $product->getId());
+
+        $minRuleToTime = INF;
+        $specialToDate = $product->getSpecialToDate();
+
+        foreach($rules as $rule)
+        {
+            $minRuleToTime = min($rule['to_time'], $minRuleToTime);
+        }
+        
+        if(isset($specialToDate) && strtotime($specialToDate) > $currentTimeStamp || isset($rules))
+        {
+            $specialToTimeStamp = !isset($specialToDate) ? INF : strtotime($specialToDate);
+
+            $time = min($specialToTimeStamp, $minRuleToTime);
+
+            $timeUntilEnd = $time - $currentTimeStamp;
+
+            return $timeUntilEnd;
+        }
+        return null;
+    }
 }
