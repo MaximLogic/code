@@ -33,21 +33,14 @@ class CronChange implements \Magento\Framework\Event\ObserverInterface
         $cronFromHour = (int)$cronFromArr[0];
         $cronToHour = (int)$cronToArr[0];
 
-        if($cronFromHour >= $cronToHour)
+        $jobCode = 'price_discount_cron';
+        $scheduleCollection = $this->scheduleCollectionFactory->create()
+            ->addFieldToFilter('job_code', $jobCode);
+        $newCronExpr = "0 $cronFromHour,$cronToHour * * *";
+        foreach ($scheduleCollection as $schedule) 
         {
-            throw new Exception("From hour need to be less than To Hour");
-        }
-        else
-        {
-            $jobCode = 'price_discount_cron';
-            $scheduleCollection = $this->scheduleCollectionFactory->create()
-                ->addFieldToFilter('job_code', $jobCode);
-            $newCronExpr = "* $cronFromHour-$cronToHour * * *";
-            foreach ($scheduleCollection as $schedule) 
-            {
-                $schedule->setCronExpr($newCronExpr);
-                $schedule->save();
-            }
+            $schedule->setCronExpr($newCronExpr);
+            $schedule->save();
         }
     }
 }
