@@ -1,0 +1,17 @@
+{
+    "perspective_sellerconsultation_question": {
+        "column": {
+            "question_id": true,
+            "name": true,
+            "email": true,
+            "phone": true,
+            "question_text": true,
+            "product_id": true,
+            "question_timestamp": true,
+            "status": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

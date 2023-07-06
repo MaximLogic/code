@@ -1,0 +1,80 @@
+<button id="consultWith">Consult with seller</button>
+<div id="modal-content">
+    <form data-mage-init='{"validation":{"rules": {"field-name": {"required":true}}}}'
+          method="POST"
+          action="<?= $block->getBaseUrl() . 'sellerconsultation/index/save'?>">
+        <fieldset class="fieldset">
+            <div class="field name required">
+                <label class="label" for="name">Name</label>
+                <div class="control">
+                    <input name="name" id="field-name" title="Name" class="input-text required-entry less-15-symbols" type="text"/>
+                </div>
+            </div>
+            <div class="field subject required">
+                <label class="label" for="name">Subject</label>
+                <div class="control">
+                    <input name="subject" id="field-subject" title="Subject" class="input-text required-entry" type="text"/>
+                </div>
+            </div>
+            <div class="field email">
+                <label class="label" for="email">E-mail</label>
+                <div class="control">
+                    <input name="email" id="field-email" placeholder="test@test.tst" title="Email" class="input-text custom-email-validate" type="text"/>
+                </div>
+            </div>
+            <div class="field telephone required">
+                <label class="label" for="name">Phone number</label>
+                <div class="control">
+                    <input name="phone" id="field-phone" placeholder="+380 XX XXX-XX-XX" title="Phone" class="input-text required-entry phoneUA" type="text"/>
+                </div>
+            </div>
+            <div class="field comment required">
+                <label class="label" for="question">What`s on your mind?</label>
+                <div class="control">
+                    <textarea name="question_text" id="question_text" title="Question" class="input-text required-entry" type="text" cols="5" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="field name required">
+                <label class="label" for="product_id">Product Id</label>
+                <div class="control">
+                    <input name="product_id" id="product_id" value="<?= $block->getProduct()->getId() ?>" title="Product Id" class="input-text required-entry" type="text"/>
+                </div>
+            </div>
+        </fieldset>
+        <div class="actions-toolbar">
+           <div class="primary">
+               <input type="hidden" name="hideit" id="hideit" value="" />
+               <button type="submit" title="<?php  echo __('Submit') ?>" class="action submit primary" id="custom_btn">
+                   <span><?php  echo __('Submit') ?></span>
+               </button>
+           </div>
+       </div>
+    </form>
+</div>
+
+<script>
+    require([
+        'jquery',
+        'Magento_Ui/js/modal/modal'
+    ], function($, modal) {
+        var options = {
+            type: 'popup',
+            responsive: true,
+            innerScroll: true,
+            title: 'Consult with seller',
+            buttons: [{
+                text: $.mage.__('Close'),
+                class: '',
+                click: function () {
+                    this.closeModal();
+                }
+            }]
+        }
+
+
+        modal(options, $('#modal-content'));
+        $('#consultWith').on('click', () => {
+            $('#modal-content').modal("openModal");
+        })
+    });
+</script>

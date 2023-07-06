@@ -1,0 +1,23 @@
+<!--@subject {{var subject}}  @-->
+{{template config_path="design/email/header_template"}}
+<table>
+    <tr>
+        <th>Hello {{var name}}</th>
+    </tr>
+    <tr>
+        <td>Product: {{var product}}</td>
+    </tr>
+    <tr>
+        <td>Your question: {{var question}}</td>
+    </tr>
+    <tr>
+        <td>Our answer: {{var answer}}</td>
+    </tr>
+    <tr>
+        <td>Answer date: {{var answerDate}}</td>
+    </tr>
+    <tr>
+        <td>Thanks for contacting</td>
+    </tr>
+</table>
+{{template config_path="design/email/footer_template"}}
