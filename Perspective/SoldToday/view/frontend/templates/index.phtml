@@ -1,0 +1,34 @@
+<?php
+    $viewModel = $block->getData("view_model");
+    $collectionOrders = $viewModel->getOrderCollection();
+    $currentProduct = $viewModel->getProductById($block->getProduct()->getId());
+    $jsOrders = [];
+?>
+<div class="sold-today">
+    <h1>Sold today</h1>
+</div>
+<?php
+    foreach ($collectionOrders as $key => $value) {
+        foreach ($value->getAllItems() as $key1 => $items) {
+            $product = $viewModel->getProductById($items->getProductId());
+            if($viewModel->isCommonCategories($product, $currentProduct))
+            {
+                $itemUrl = $viewModel->getUrlByProdId($items->getProductId()) . '.html';
+                $itemName = $items->getName();
+                $jsOrders[] = ['url' => $itemUrl, 'name' => $itemName];
+            }
+        }
+    }
+    $jsOrders = array_slice($jsOrders, 0, 5);
+    $jsOrders = json_encode($jsOrders)
+?>
+
+<script type="text/x-magento-init">
+    {
+        ".sold-today" : {
+            "Perspective_SoldToday/js/index" : {
+                "orders" : <?= $jsOrders ?>
+            }
+        }
+    }
+</script>
