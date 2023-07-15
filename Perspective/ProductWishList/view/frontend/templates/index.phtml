@@ -1,0 +1,15 @@
+<?php
+    $viewModel = $block->getViewModel();
+    $count = $viewModel->getWishListCount($block->getProduct()->getId());
+?>
+<h1 class="perspective-wishlists"></h1>
+
+<script type="text/x-magento-init">
+    {
+        ".perspective-wishlists" : {
+            "Perspective_ProductWishList/js/index" : {
+                "count" : <?= $count ?>
+            }
+        }
+    }
+</script>
