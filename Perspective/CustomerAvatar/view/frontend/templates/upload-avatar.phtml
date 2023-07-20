@@ -1,0 +1,32 @@
+<?php
+    $allowedAvatarTypes = $block->getAllowedAvatarTypes();
+
+?>
+
+<?php if ($block->isModuleEnabled()): ?>
+    <fieldset class="fieldset file-upload">
+    <div class="field customer_file_upload">
+        <label for="customer_avatar" class="label">Upload your avatar</label>
+        <div class="control">
+            <input type="file" name="customer_avatar" id="customer_avatar" accept="<?= $allowedAvatarTypes ?>">
+        </div>
+        <img id="preview-image" />
+    </div>
+    <?php if ($url = $block->getFileUrl()): ?>
+        <b>Current avatar</b>
+        <div class="field">
+            <img src="<?php echo $url ?>" alt="image" width="250"/>
+        </div>
+    <?php endif;?>
+    </fieldset>
+    
+    <script type="text/x-magento-init">
+        {
+            "#customer_avatar" : {
+                "Perspective_CustomerAvatar/js/avatarPreview" : {
+                    
+                }
+            }
+        }
+    </script>
+<?php endif;?>
