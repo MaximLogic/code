@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="cancelled_orders" resource="default" engine="innodb" comment="Cancelled orders">
+        <column xsi:type="int" name="entity_id" padding="11" unsigned="false" nullable="false" identity="true" comment="Id" />
+        <column xsi:type="varchar" name="order_id" length="31" nullable="false" comment="Canceled order id" />
+        <column xsi:type="varchar" name="canc_reason" length="255" nullable="false" comment="Cancellation reason" />
+        <column xsi:type="text" name="comment" nullable="true" comment="Comment" />
+        <column xsi:type="varchar" name="cancelled_by" length="127" nullable="false" comment="Cancelled by" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <!-- <constraint xsi:type="unique" referenceId="REFERENCE_ID">
+            <column name="entity_id"/>
+            <column name="another_column"/>
+        </constraint>
+         <index referenceId="INDEX_REFERENCE_ID" indexType="btree">
+            <column name="another_column"/>
+        </index>
+        -->
+    </table>
+</schema>

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Perspective_CancelOrder::cancelledorders" title="Canceled Orders" 
+        module="Perspective_CancelOrder" sortOrder="99" action="perspective_cancelledorders/cancelledorders/index" 
+        resource="Perspective_CancelOrder::cancelledorders" parent="Magento_Sales::sales_operation"/>
+    </menu>
+</config>
