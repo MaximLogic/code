@@ -1,0 +1,84 @@
+<button style="height: 52px; width: 243px; margin-top: 20px" class="action primary tocart" id="one_click_buy">
+    <b>Buy in 1 click</b>
+</button>
+
+<div id="modal-content">
+    <form
+          method="POST"
+          action="<?= $block->getBaseUrl() . 'oneclickpurchase/oneclickpurchase/index'?>"
+          data-mage-init='{"validation": {}}'>
+        <fieldset class="fieldset">
+            <div class="field name">
+                <label class="label" for="firstname">Firstname</label>
+                <div class="control">
+                    <input name="firstname" id="field-firstname" placeholder="John" title="Firstname" class="input-text" type="text"/>
+                </div>
+            </div>
+            <div class="field name">
+                <label class="label" for="lastname">Lastname</label>
+                <div class="control">
+                    <input name="lastname" id="field-lastname" placeholder="Doe" title="Lastname" class="input-text" type="text"/>
+                </div>
+            </div>
+            <div class="field email required">
+                <label class="label" for="email">E-mail</label>
+                <div class="control">
+                    <input name="email" id="field-email" placeholder="test@test.com" title="Email" class="input-text custom-email-validate required-entry" type="text"/>
+                </div>
+            </div>
+            <div class="field telephone">
+                <label class="label" for="name">Phone number</label>
+                <div class="control">
+                    <input name="phone" id="field-phone" placeholder="+380 XX XXX-XX-XX" title="Phone" class="input-text phoneUA" type="text"/>
+                </div>
+            </div>
+        </fieldset>
+        <div class="actions-toolbar">
+           <div class="primary">
+               <input type="hidden" name="product-id" id="product-id" value="<?= $block->getProduct()->getId();?>" />
+               <input type="hidden" name="product-qty" id="product-qty" />
+               <input type="hidden" name="product-size" id="product-size" />
+               <input type="hidden" name="product-size-attribute-id" id="product-size-attribute-id" />
+               <input type="hidden" name="product-color" id="product-color" />
+               <input type="hidden" name="product-color-attribute-id" id="product-color-attribute-id" />
+               <button type="submit" title="<?php  echo __('Order') ?>" class="action submit primary" id="custom_btn">
+                   <span><?php  echo __('Order') ?></span>
+               </button>
+           </div>
+       </div>
+    </form>
+</div>
+
+<script>
+    require([
+        'jquery',
+        'Magento_Ui/js/modal/modal'
+    ], function($, modal) {
+        var options = {
+            type: 'popup',
+            responsive: true,
+            innerScroll: true,
+            title: 'Buy in 1 click',
+            buttons: [{
+                text: $.mage.__('Close'),
+                class: '',
+                click: function () {
+                    this.closeModal();
+                }
+            }]
+        }
+
+
+        modal(options, $('#modal-content'));
+        $('#one_click_buy').on('click', () => {
+            $('#modal-content').modal("openModal");
+            $('#product-size').val($('.swatch-attribute.size').attr('data-option-selected'));
+            $('#product-size-attribute-id').val($('.swatch-attribute.size').attr('data-attribute-id'));
+
+            $('#product-color').val($('.swatch-attribute.color').attr('data-option-selected'));
+            $('#product-color-attribute-id').val($('.swatch-attribute.color').attr('data-attribute-id'));
+
+            $('#product-qty').val($('#qty').val());
+        })
+    });
+</script>
