@@ -12,7 +12,7 @@ class Index extends \Magento\Backend\App\Action
      * @param \Magento\Framework\App\Action\Context $context
      */
     public function __construct(
-       \Magento\Framework\App\Action\Context $context,
+       \Magento\Backend\App\Action\Context $context,
        \Magento\Framework\View\Result\PageFactory $pageFactory
     )
     {
