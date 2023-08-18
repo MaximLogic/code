@@ -1,0 +1,144 @@
+<div style="float: right; margin-left: 2%">
+    <select id="city_select"></select>
+</div>
+<script>
+require([
+    'jquery'
+], function($) {
+    $.ajax({
+        url: "http://api.ipstack.com/check?access_key=030df19a9a2eaa4742c6e537cc130c73&language=ru",
+        type: "GET",
+        success: function (res){
+            var currCityInfo = res;
+            var data = {
+                "apiKey": "c4affaaf682cb040e7c466077bdad8ec",
+                    "modelName": "Address",
+                    "calledMethod": "getCities",
+                    "methodProperties": {
+                        "FindByString": currCityInfo.city
+                    }
+            };
+            var json = JSON.stringify(data);
+            $.ajax({
+                url: "https://api.novaposhta.ua/v2.0/json/",
+                type: "POST",
+                data: json,
+                success: function (res){
+                    if(res.info.totalCount > 0){
+                        $("#city_select").append($('<option>', {
+                            value: res.data[0].CityID,
+                            text: res.data[0].Description
+                        }));
+                        $('#city_select').val(res.data[0].CityID);
+                    }
+                }
+            })
+            
+        },
+        error: function (xhr, status, error) {
+            console.log(error);
+        }
+    })
+    oblCenters = [
+        {
+            value: 17,
+            text: "Вінниця"
+        },
+        {
+            value: 1,
+            text: "Дніпро"
+        },
+        {
+            value: 109,
+            text: "Донецьк"
+        },
+        {
+            value: 21,
+            text: "Житомир"
+        },
+        {
+            value: 3,
+            text: "Запоріжжя"
+        },
+        {
+            value: 58,
+            text: "Івано-Франківськ"
+        },
+        {
+            value: 4,
+            text: "Київ"
+        },
+        {
+            value: 59,
+            text: "Кропивницький"
+        },
+        {
+            value: 110,
+            text: "Луганськ"
+        },
+        {
+            value: 22,
+            text: "Луцьк"
+        },
+        {
+            value: 8,
+            text: "Львів"
+        },
+        {
+            value: 9,
+            text: "Миколаїв"
+        },
+        {
+            value: 10,
+            text: "Одеса"
+        },
+        {
+            value: 11,
+            text: "Полтава"
+        },
+        {
+            value: 18,
+            text: "Рівне"
+        },
+        {
+            value: 56,
+            text: "Суми"
+        },
+        {
+            value: 19,
+            text: "Тернопіль"
+        },
+        {
+            value: 63,
+            text: "Ужгород"
+        },
+        {
+            value: 13,
+            text: "Харків"
+        },
+        {
+            value: 14,
+            text: "Херсон"
+        },
+        {
+            value: 15,
+            text: "Хмельницький"
+        },
+        {
+            value: 62,
+            text: "Черкаси"
+        },
+        {
+            value: 20,
+            text: "Чернівці"
+        },
+        {
+            value: 57,
+            text: "Чернігів"
+        }
+    ];
+    oblCenters.forEach((el) => {
+        $("#city_select").append($('<option>', el));
+    });
+})
+</script>
