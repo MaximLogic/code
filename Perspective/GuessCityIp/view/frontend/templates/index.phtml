@@ -11,7 +11,7 @@ require([
         success: function (res){
             var currCityInfo = res;
             $.ajax({
-                url: "cities/cities/index",
+                url: "http://magento245.loc/cities/cities/index",
                 type: "POST",
                 data: currCityInfo,
                 success: function (res){
