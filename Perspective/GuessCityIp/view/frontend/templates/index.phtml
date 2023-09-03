@@ -10,26 +10,17 @@ require([
         type: "GET",
         success: function (res){
             var currCityInfo = res;
-            var data = {
-                "apiKey": "c4affaaf682cb040e7c466077bdad8ec",
-                    "modelName": "Address",
-                    "calledMethod": "getCities",
-                    "methodProperties": {
-                        "FindByString": currCityInfo.city
-                    }
-            };
-            var json = JSON.stringify(data);
             $.ajax({
-                url: "https://api.novaposhta.ua/v2.0/json/",
+                url: "cities/cities/index",
                 type: "POST",
-                data: json,
+                data: currCityInfo,
                 success: function (res){
-                    if(res.info.totalCount > 0){
+                    if(res){
                         $("#city_select").append($('<option>', {
-                            value: res.data[0].CityID,
-                            text: res.data[0].Description
+                            value: res.entity_id,
+                            text: res.city
                         }));
-                        $('#city_select').val(res.data[0].CityID);
+                        $('#city_select').val(res.entity_id);
                     }
                 }
             })

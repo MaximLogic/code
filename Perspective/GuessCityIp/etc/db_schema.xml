@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="np_cities" resource="default" engine="innodb" comment="Nova Poshta cities">
+        <column xsi:type="int" name="entity_id" padding="11" unsigned="false" nullable="false" identity="true" comment="Id"/>
+        <column xsi:type="varchar" name="city" length="64" nullable="false" comment="City"/>
+        <column xsi:type="varchar" name="city_ru" length="64" nullable="false" comment="CityRu"/>
+        <column xsi:type="varchar" name="region" length="64" nullable="false" comment="Region"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+</schema>
