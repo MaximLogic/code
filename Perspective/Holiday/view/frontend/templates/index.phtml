@@ -1,0 +1,13 @@
+<?php
+/** @var \Perspective\Holiday\Block\Template $block */
+
+$viewModel = $block->getViewModel();
+echo "<div style='margin:auto'>";
+foreach($viewModel->getEnabledHolidays() as $holiday)
+{
+    echo $holiday->getGreeting() . "<br>";
+}
+echo "</div>"
+?>
+
+<span style='margin:auto'>test</span>
